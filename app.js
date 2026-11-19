@@ -194,7 +194,14 @@ function makeScene(){
   const head=new THREE.Mesh(new THREE.SphereGeometry(.20,12,12),mat(0xe8b68f));head.position.y=1.66;person.add(head);
   for(const x of [-.12,.12])addBox(x,.40,0,.13,.68,.15,navy,person);
   // Start outside at the front entrance; walk into the front cabin and then straight down the aisle.
-  person.position.set(-1.4,0,-10.15);world.add(person);
+ 
+person.position.set(-1.4, 0, -10.15);
+world.add(person);
+
+// First-person camera: hide the character model
+// to prevent its head and body from blocking the view.
+person.visible = false;
+
   const heldButtons=[...document.querySelectorAll('[data-drive]')];
   function down(e){if(activePage!=='book'||view!=='3d'||document.activeElement?.matches('input,select,textarea'))return;const k=e.key.toLowerCase();if(['w','a','s','d','arrowleft','arrowright'].includes(k)){keys.add(k);e.preventDefault()}}
   function up(e){keys.delete(e.key.toLowerCase())}
