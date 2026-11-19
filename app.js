@@ -225,7 +225,25 @@ person.visible = false;
         if(nextZ>-7.75)nextX=Math.max(-.61,Math.min(.61,nextX));else nextX=Math.max(-2.25,Math.min(.65,nextX));person.position.set(nextX,0,nextZ)}
       person.rotation.y=yaw;
       // Eye-level interior camera; keeps the roof, cabin and upper berths visible.
-      const eye=new THREE.Vector3(person.position.x,1.72,person.position.z-.18);camera.position.lerp(eye,.24);
+      
+const eye = new THREE.Vector3(
+  person.position.x,
+  1.60,
+  person.position.z
+);
+
+camera.position.lerp(eye, 0.35);
+
+camera.lookAt(
+  camera.position.clone().add(
+    new THREE.Vector3(
+      Math.sin(yaw) * 4,
+      0,
+      Math.cos(yaw) * 4
+    )
+  )
+);
+
       camera.lookAt(camera.position.clone().add(new THREE.Vector3(Math.sin(yaw)*4,-.035,Math.cos(yaw)*4)));
     }
     renderer.render(world,camera)
