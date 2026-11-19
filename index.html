@@ -1,34 +1,46 @@
 
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <meta name="theme-color" content="#0a1223" />
-  <meta name="description" content="BusNova Pro — walk inside a 3D bus, choose your seat, and reserve a ticket in a C-powered demo." />
-  <link rel="icon" type="image/svg+xml" href="./assets/logo.svg" />
-  <link rel="stylesheet" href="./styles.css" />
-  <title>SAPANA Air Bus | BusNova Pro reservations</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#0a1223">
+  <meta name="description" content="SAPANA Air Bus — 2D and 3D bus reservation system.">
+
+  <title>SAPANA Air Bus | BusNova Pro</title>
+
+  <link rel="icon" type="image/svg+xml" href="./assets/logo.svg">
+  <link rel="stylesheet" href="./styles.css">
 </head>
+
 <body>
   <div class="shell">
+
+    <!-- SIDEBAR -->
     <aside class="sidebar">
       <a class="brand" href="#home" aria-label="BusNova Pro home">
         <span class="brand-icon">B<span>↗</span></span>
-        <span>BusNova <b>Pro</b><small>SMART TRAVEL SYSTEM</small></span>
+        <span>
+          BusNova <b>Pro</b>
+          <small>SMART TRAVEL SYSTEM</small>
+        </span>
       </a>
 
       <div class="side-kicker">WORKSPACE</div>
+
       <nav aria-label="Main navigation">
         <button class="nav-link active" data-page="home">
           <span>◫</span> Overview
         </button>
+
         <button class="nav-link" data-page="book">
           <span>▣</span> Book a seat
         </button>
+
         <button class="nav-link" data-page="tickets">
           <span>◈</span> My tickets
         </button>
+
         <button class="nav-link" data-page="admin">
           <span>▤</span> Admin demo
         </button>
@@ -37,7 +49,11 @@
       <div class="side-bottom">
         <div class="mini-graphic">✦</div>
         <strong>Explore the bus in 3D</strong>
-        <p>Walk down the aisle, inspect seats and reserve your favorite spot.</p>
+        <p>
+          Enter the driver cabin, walk through the aisle,
+          inspect seats and reserve your favorite spots.
+        </p>
+
         <button id="sidebar-explore" class="outline-light">
           Launch 3D view ↗
         </button>
@@ -45,17 +61,19 @@
 
       <div class="sidebar-foot">
         Built with C + WebAssembly
-        <br />
+        <br>
         © BusNova Pro Demo
       </div>
     </aside>
 
+    <!-- MAIN -->
     <main class="main">
       <header class="topbar">
         <div class="topbar-crumb">
           PAGES <span>/</span>
           <strong id="page-breadcrumb">OVERVIEW</strong>
         </div>
+
         <div class="top-actions">
           <span class="status-dot"></span>
           <span id="engine-label">Loading booking engine…</span>
@@ -63,38 +81,65 @@
         </div>
       </header>
 
-      <!-- HOME PAGE -->
+      <!-- HOMEPAGE -->
       <section id="home" class="page active">
         <div class="hello">
           <div>
             <div class="eyebrow">
+
+              <!-- SMALL BUS ICON -->
+              <span style="
+                display:inline-flex;
+                align-items:center;
+                justify-content:center;
+                width:42px;
+                height:42px;
+                margin-right:10px;
+                vertical-align:middle;
+                border-radius:12px;
+                background:linear-gradient(135deg,#ff8a00,#ff5a1f);
+                box-shadow:0 5px 15px rgba(255,110,30,.25);
+              ">
+                <svg width="27" height="27" viewBox="0 0 24 24"
+                     fill="none" stroke="white" stroke-width="1.8"
+                     stroke-linecap="round" stroke-linejoin="round"
+                     aria-hidden="true">
+                  <rect x="4" y="3" width="16" height="16" rx="3"/>
+                  <path d="M4 13h16M8 19v2m8-2v2M8 6v6m8-6v6M5 6h14"/>
+                  <circle cx="8" cy="16" r="1"/>
+                  <circle cx="16" cy="16" r="1"/>
+                </svg>
+              </span>
+
               WELCOME TO THE FUTURE OF TRAVEL
               <span class="sparkle">✦</span>
             </div>
 
             <h1>
               Welcome aboard
-              <br />
+              <br>
               <em>SAPANA Air Bus.</em>
             </h1>
 
             <p>
               Plan smarter, explore your bus in 3D, and book with confidence.
-              Experience the 3D driver cabin and upper sleeper berths,
-              and generate a ticket for all your selected seats.
+              Experience the driver cabin, comfortable sofa seats,
+              upper sleeper berths and generate a ticket
+              for all your selected seats.
             </p>
 
             <div class="hero-actions">
               <button class="primary" data-go="book">
                 Book your journey <span>→</span>
               </button>
+
               <button class="secondary" id="hero-explore">
                 Explore 3D bus ↗
               </button>
             </div>
           </div>
 
-          <!-- Bus image removed -->
+          <!-- LARGE BUS IMAGE REMOVED -->
           <div class="hero-art" aria-hidden="true">
             <div class="orb orb-one"></div>
             <div class="orb orb-two"></div>
@@ -148,7 +193,10 @@
             <span class="eyebrow">FEATURED ROUTES</span>
             <h2>Where to next?</h2>
           </div>
-          <button class="subtle-button" data-go="book">All routes →</button>
+
+          <button class="subtle-button" data-go="book">
+            All routes →
+          </button>
         </div>
 
         <div class="routes" id="home-routes"></div>
@@ -177,7 +225,7 @@
 
           <div class="field">
             <label for="travel-date">TRAVEL DATE</label>
-            <input type="date" id="travel-date" />
+            <input type="date" id="travel-date">
           </div>
 
           <div class="field">
@@ -207,7 +255,7 @@
               </div>
             </div>
 
-            <!-- 2D SEAT MAP -->
+            <!-- 2D MAP -->
             <div id="seat-map-view">
               <div class="bus-map">
                 <div class="bus-front">
@@ -215,6 +263,7 @@
                     <span class="steer">◉</span>
                     <small>ENTRANCE</small>
                   </div>
+
                   <div class="driver">
                     ◉ <span>DRIVER</span>
                   </div>
@@ -238,7 +287,8 @@
               </div>
 
               <p class="seat-hint">
-                Tap several green seats. Tap an orange seat again to deselect.
+                Tap several green seats.
+                Tap an orange seat again to deselect.
               </p>
 
               <div class="legend">
@@ -248,7 +298,7 @@
               </div>
             </div>
 
-            <!-- 3D BUS VIEW -->
+            <!-- 3D VIEW -->
             <div id="scene-view" class="hidden">
               <div id="three-canvas">
                 <div class="scene-fallback" id="scene-fallback">
@@ -256,23 +306,31 @@
                 </div>
               </div>
 
-              <!-- MOBILE WALKING CONTROLS -->
+              <!-- MOBILE CONTROLS -->
               <div id="mobile-drive" class="mobile-drive"
                    aria-label="3D walking and turning controls">
                 <div class="drive-pad">
                   <span class="pad-title">WALK</span>
 
                   <button type="button" class="drive-up"
-                          data-drive="w" aria-label="Walk forward">▲</button>
+                          data-drive="w" aria-label="Walk forward">
+                    ▲
+                  </button>
 
                   <button type="button" class="drive-left"
-                          data-drive="a" aria-label="Walk left">◀</button>
+                          data-drive="a" aria-label="Walk left">
+                    ◀
+                  </button>
 
                   <button type="button" class="drive-down"
-                          data-drive="s" aria-label="Walk backward">▼</button>
+                          data-drive="s" aria-label="Walk backward">
+                    ▼
+                  </button>
 
                   <button type="button" class="drive-right"
-                          data-drive="d" aria-label="Walk right">▶</button>
+                          data-drive="d" aria-label="Walk right">
+                    ▶
+                  </button>
                 </div>
 
                 <div class="turn-pad">
@@ -287,7 +345,7 @@
               </div>
 
               <div class="scene-tip">
-                Tip: tap a numbered 3D seat to add or remove it
+                Tap a numbered 3D seat to add or remove it
                 from your selection.
               </div>
 
@@ -295,18 +353,17 @@
                 <summary>View SAPANA luxury cabin design reference</summary>
                 <img
                   src="./assets/sapana-cabin.webp"
-                  alt="Visual reference for the SAPANA luxury bus cabin"
-                  loading="lazy"
-                />
+                  alt="SAPANA luxury bus cabin reference"
+                  loading="lazy">
                 <p>
-                  The interactive 3D interior is a modeled approximation,
-                  not an automatic 3D scan of the real bus.
+                  Interactive 3D interior is a modeled approximation,
+                  not an exact 3D scan.
                 </p>
               </details>
 
               <div class="scene-controls">
                 <span>
-                  Start at front door → driver cabin → aisle ·
+                  Front door → driver cabin → aisle ·
                   W/A/S/D or mobile arrows · Tap numbered seat
                 </span>
                 <button id="reset-camera">Reset view ⟳</button>
@@ -314,7 +371,7 @@
             </div>
           </div>
 
-          <!-- BOOKING SUMMARY -->
+          <!-- TRIP SUMMARY -->
           <div class="booking-aside">
             <div class="panel summary">
               <span class="eyebrow">YOUR RESERVATION</span>
@@ -350,31 +407,35 @@
               </div>
             </div>
 
-            <!-- PASSENGER DETAILS -->
+            <!-- PASSENGER FORM -->
             <div class="panel passenger">
               <span class="eyebrow">PASSENGER DETAILS</span>
               <h2>Ready to go?</h2>
 
               <form id="booking-form">
                 <label for="passenger-name">Full name</label>
-                <input id="passenger-name" name="name"
+                <input id="passenger-name"
+                       name="name"
                        autocomplete="name"
                        placeholder="Your full name"
-                       required minlength="2" maxlength="80" />
+                       required minlength="2" maxlength="80">
 
                 <label for="passenger-phone">Phone number</label>
-                <input id="passenger-phone" name="phone"
-                       type="tel" inputmode="numeric"
+                <input id="passenger-phone"
+                       name="phone"
+                       type="tel"
+                       inputmode="numeric"
                        autocomplete="tel"
                        placeholder="10-digit Nepal number"
                        pattern="[0-9]{10}"
-                       title="Enter a 10-digit number" required />
+                       required>
 
                 <label for="payment-mode">Payment method</label>
                 <select id="payment-mode">
                   <option value="Pay at counter">
                     Pay at counter (demo)
                   </option>
+
                   <option value="Mock QR payment">
                     Mock QR payment (demo only)
                   </option>
@@ -386,7 +447,7 @@
 
                 <p class="privacy-note">
                   Multiple seats can be booked together.
-                  Local browser demonstration; no actual payment is collected.
+                  Local browser demonstration only.
                 </p>
               </form>
             </div>
@@ -400,7 +461,10 @@
           <div>
             <span class="eyebrow">YOUR JOURNEYS</span>
             <h1>My <em>tickets.</em></h1>
-            <p>View, print, and cancel reservations saved on this device.</p>
+            <p>
+              View, print and cancel reservations
+              saved on this device.
+            </p>
           </div>
           <span class="step-badge">02 / MY TICKETS</span>
         </div>
@@ -408,20 +472,22 @@
         <div id="tickets-list" class="ticket-list"></div>
       </section>
 
-      <!-- ADMIN DEMO -->
+      <!-- ADMIN -->
       <section id="admin" class="page">
         <div class="page-head">
           <div>
             <span class="eyebrow">MANAGEMENT STUDIO</span>
             <h1>Admin <em>demo.</em></h1>
-            <p>Review demo reservations and update routes stored in this browser.</p>
+            <p>
+              Review local reservations and update demo routes.
+            </p>
           </div>
           <span class="step-badge">03 / ADMIN</span>
         </div>
 
         <div class="warning">
           ⚠ This admin screen is an unprotected local demo.
-          Do not use it for real customer information or payments.
+          Do not use it for real payments or customer data.
         </div>
 
         <div class="stats admin-stats">
@@ -429,10 +495,12 @@
             <span>Local bookings</span>
             <strong id="admin-bookings">0</strong>
           </div>
+
           <div class="stat-card">
             <span>Routes</span>
             <strong id="admin-routes">4</strong>
           </div>
+
           <div class="stat-card">
             <span>Demo ticket value</span>
             <strong id="admin-revenue">रू 0</strong>
@@ -452,18 +520,18 @@
 
               <div class="two-cols">
                 <input id="new-from" placeholder="From"
-                       required maxlength="50" />
+                       required maxlength="50">
                 <input id="new-to" placeholder="To"
-                       required maxlength="50" />
+                       required maxlength="50">
               </div>
 
               <div class="two-cols">
                 <input id="new-fare" type="number"
                        min="100" max="20000"
-                       required placeholder="Fare (NPR)" />
+                       required placeholder="Fare (NPR)">
                 <input id="new-duration"
                        placeholder="Duration e.g. 6h 30m"
-                       maxlength="30" required />
+                       maxlength="30" required>
               </div>
 
               <button type="submit" class="primary">
@@ -481,23 +549,25 @@
         </div>
       </section>
 
+      <!-- FOOTER -->
       <footer>
         SAPANA AIR BUS · BUSNOVA PRO
         <span>•</span>
-        An interactive C + WebAssembly college project
+        C + WebAssembly college project
         <span>•</span>
         Data stays in this browser
       </footer>
     </main>
   </div>
 
-  <!-- TOAST NOTIFICATIONS -->
+  <!-- NOTIFICATIONS -->
   <div class="toast" id="toast" role="status" aria-live="polite"></div>
 
   <!-- TICKET DIALOG -->
   <dialog id="ticket-dialog">
     <div class="dialog-wrap">
-      <button class="close-dialog" id="close-dialog"
+      <button class="close-dialog"
+              id="close-dialog"
               aria-label="Close">×</button>
 
       <div id="ticket-preview"></div>
@@ -506,6 +576,7 @@
         <button class="secondary" id="print-ticket">
           Print ticket ⎙
         </button>
+
         <button class="primary" id="dismiss-ticket">
           Done →
         </button>
@@ -513,6 +584,7 @@
     </div>
   </dialog>
 
+  <!-- APPLICATION SCRIPT -->
   <script type="module" src="./app.js"></script>
 </body>
 </html>
